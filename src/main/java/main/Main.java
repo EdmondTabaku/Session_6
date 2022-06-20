@@ -2,6 +2,7 @@ package main;
 
 import dto.UserDto;
 import model.User;
+import model.UserDetails;
 import repository.User.impl.UserRepositoryImpl;
 import service.UserService;
 
@@ -50,11 +51,10 @@ public class Main {
     // Options
     private static void option1() {
         User user = new User();
+        UserDetails userDetails = new UserDetails();
         UserService userService = new UserService();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the Id of the user you want to insert or update: ");
-        int id = scanner.nextInt();
-        user.setId(id);
+
         System.out.println("Enter the username of the user you want to insert or update: ");
         String username = scanner.next();
         user.setUsername(username);
@@ -66,6 +66,24 @@ public class Main {
         System.out.println("Enter the role of the user you want to insert or update: ");
         String role = scanner.next();
         user.setRole(role);
+
+        System.out.println("Enter the first name of the user you want to insert or update: ");
+        String firstName = scanner.next();
+        userDetails.setFirstName(firstName);
+
+        System.out.println("Enter the last name of the user you want to insert or update: ");
+        String lastName = scanner.next();
+        userDetails.setLastName(lastName);
+
+        System.out.println("Enter the phone number of the user you want to insert or update: ");
+        String phone = scanner.next();
+        userDetails.setPhoneNumber(phone);
+
+        System.out.println("Enter the email of the user you want to insert or update: ");
+        String email = scanner.next();
+        userDetails.setEmail(email);
+
+        user.setUserDetails(userDetails);
 
         UserDto userDto = userService.save(user);
         System.out.println("Saved user with username: " + userDto.getUsername());
@@ -88,7 +106,11 @@ public class Main {
         System.out.println("Enter the Id of the user you want to find: ");
         id = scanner.nextInt();
         UserDto user = userService.findById(id);
-        System.out.println("Username: " + user.getUsername() + "  ||  Role: " + user.getRole());
+        System.out.println("Username: " + user.getUsername() + "  ||  Role: " + user.getRole()
+                + " || First Name: " + user.getUserDetailsDto().getFirstName()
+                + " || Last Name: " + user.getUserDetailsDto().getLastName()
+                + " || Email: " + user.getUserDetailsDto().getEmail()
+                + " || Phone: " + user.getUserDetailsDto().getPhoneNumber());
     }
     private static void option4() {
         UserService userService = new UserService();

@@ -1,17 +1,15 @@
 package model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "userDetails")
 public class UserDetails {
 
     @Id
-    @Column(name = "id")
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Integer user_id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -25,9 +23,12 @@ public class UserDetails {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @OneToOne(mappedBy = "userDetails")
+    private User user;
+
 
     public Integer getId() {
-        return id;
+        return user_id;
     }
 
     public String getFirstName() {

@@ -1,7 +1,9 @@
 package service;
 
+import dto.UserDetailsDto;
 import model.User;
 import dto.UserDto;
+import model.UserDetails;
 import repository.User.impl.UserRepositoryImpl;
 
 import java.util.ArrayList;
@@ -46,6 +48,15 @@ public class UserService {
         userDto.setUsername(u.getUsername());
         userDto.setPassword(u.getPassword());
         userDto.setRole(u.getRole());
+
+        UserDetails ud = u.getUserDetails();
+        UserDetailsDto userDetailsDto = new UserDetailsDto();
+        userDetailsDto.setFirstName(ud.getFirstName());
+        userDetailsDto.setLastName(ud.getLastName());
+        userDetailsDto.setPhoneNumber(ud.getPhoneNumber());
+        userDetailsDto.setEmail(ud.getEmail());
+
+        userDto.setUserDetailsDto(userDetailsDto);
 
         return userDto;
     }

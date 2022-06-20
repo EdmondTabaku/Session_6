@@ -10,6 +10,16 @@ public class UserDto {
 
     private String role;
 
+    private UserDetailsDto userDetailsDto;
+
+
+    public UserDetailsDto getUserDetailsDto() {
+        return userDetailsDto;
+    }
+
+    public void setUserDetailsDto(UserDetailsDto userDetailsDto) {
+        this.userDetailsDto = userDetailsDto;
+    }
 
     public Integer getId() {
         return id;
